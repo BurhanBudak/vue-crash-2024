@@ -1,17 +1,13 @@
 <script setup>
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-// import BackButton from '@/components/BackButton.vue';
-import { reactive, onMounted, computed } from 'vue';
+import BackButton from '@/components/BackButton.vue';
+import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink, useRouter } from 'vue-router';
 // import { useToast } from 'vue-toastification';
 import axios from 'axios';
 
-
 const route = useRoute()
 const jobId = route.params.id
-
-
-console.log(jobId);
 
 const state = reactive({
   job: {},
@@ -20,7 +16,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`http://localhost:5000/jobs/${jobId}`);
+    const response = await axios.get(`/api/jobs/${jobId}`);
     state.job = response.data
   } catch (error) {
     console.log('Error fetching job' + error);
@@ -31,6 +27,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <BackButton />
   <section v-if="!state.isLoading" class="bg-green-50">
     <div class="container m-auto py-10 px-6">
       <div class="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
@@ -87,9 +84,11 @@ onMounted(async () => {
           <!-- Manage -->
           <div class="bg-white p-6 rounded-lg shadow-md mt-6">
             <h3 class="text-xl font-bold mb-6">Manage Job</h3>
-            <a href="add-job.html"
-              class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">Edit
-              Job</a>
+            <RouterLink :to="`/jobs/edit/${state.job.id}`"
+              class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+              Edit
+              Job
+            </RouterLink>
             <button
               class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
               Delete Job
