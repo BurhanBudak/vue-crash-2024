@@ -39,7 +39,9 @@ onMounted(async () => {
   } catch (error) {
     console.log('Error fetching job' + error);
   } finally {
-    state.isLoading = false
+    setTimeout(() => {
+            state.isLoading = false
+        }, 500)
   }
 })
 </script>

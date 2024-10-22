@@ -24,15 +24,19 @@ const state = reactive({
 })
 
 onMounted(async () => {
+    
     try {
         const response = await axios.get('/api/jobs')
         // jobs.value = response.data //is used if ref is used
         state.jobs = response.data
     } catch (error) {
-        console.log('Error fetching jobs' + error);
+        console.error('Error fetching jobs' + error);
     } finally {
-        state.isLoading = false
+        setTimeout(() => {
+            state.isLoading = false
+        }, 1000)
     }
+
 })
 </script>
 
