@@ -1,6 +1,8 @@
 # vue-crash-2024
 
-This template should help get you started developing with Vue 3 in Vite.
+Tutorial for Vue with Vite and JSON server.
+
+[Youtube](https://www.youtube.com/watch?v=VeNfHj6MhgA) link for the tutorial by Traversy Media 1 july 2024
 
 ## Recommended IDE Setup
 
