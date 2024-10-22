@@ -85,17 +85,31 @@
       }
     },
     {
-      "id": "2b6a",
-      "title": "React Dev",
-      "type": "Ullam incidunt quam",
+      "title": "Junior React Dev",
+      "type": "Full-Time",
       "description": "Reprehenderit tenetu",
-      "salary": "$80K - $90K",
+      "salary": "Over $200K",
       "location": "Ullam incidunt quam",
       "company": {
         "name": "Fisher and Roberts LLC",
         "description": "Ullam sit eveniet ",
         "contactEmail": "qiqe@mailinator.com",
         "contactPhone": "+1 (927) 978-9378"
+      },
+      "id": "2b6a"
+    },
+    {
+      "id": "9a48",
+      "title": "Svelte Dev",
+      "type": "Stockholm",
+      "description": "Junior dev in Svelte framwork",
+      "salary": "Over $200K",
+      "location": "Stockholm",
+      "company": {
+        "name": "Televerket AB",
+        "description": "Main national carrier for Sweden",
+        "contactEmail": "televerket@se",
+        "contactPhone": "0123456789"
       }
     }
   ]

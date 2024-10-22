@@ -3,6 +3,7 @@ import router from '@/router';
 import axios from 'axios';
 import { reactive, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import BackButton from '@/components/BackButton.vue';
 import { useToast } from 'vue-toastification';
 
 const route = useRoute();
@@ -31,9 +32,9 @@ const state = reactive({
 const toast = useToast();
 
 const handleSubmit = async () => {
-    const newJob = {
+    const updatedJob = {
         title: form.title,
-        type: form.location,
+        type: form.type,
         description: form.description,
         salary: form.salary,
         location: form.location,
@@ -45,12 +46,12 @@ const handleSubmit = async () => {
         }
     }
     try {
-        const response = await axios.post('/api/jobs/', newJob);
-        toast.success('Job Added Successfully')
+        const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
+        toast.success('Job Updated Successfully')
         router.push(`/jobs/${response.data.id}`)
     } catch (error) {
-        toast.error('Job Was Not Added')
-        console.log('Error pushing job' + error);
+        console.error('JOb was Not Added', error);
+        toast.error('Error fetching job')
     }
 
 }
@@ -69,12 +70,15 @@ onMounted(async () => {
         form.company.contactEmail = state.job.company.contactEmail;
         form.company.contactPhone = state.job.company.contactPhone;
     } catch (error) {
-
+        console.error('Error fetching job' + error);
+    } finally {
+        state.isLoading = false
     }
 })
 </script>
 
 <template>
+    <BackButton />
     <section class="bg-green-50">
         <div class="container m-auto max-w-2xl py-24">
             <div class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
